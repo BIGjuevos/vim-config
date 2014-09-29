@@ -1,21 +1,26 @@
+execute pathogen#infect()
+
 set t_Co=256
 
 set autoindent
 set smartindent
 set incsearch
 set hlsearch
-syntax on  
-filetype on  
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-autocmd FileType php set makeprg=php\ -l\ %\ $*  
+syntax on
+filetype on
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+autocmd FileType php set makeprg=php\ -l\ %\ $*
 autocmd FileType php set errorformat=%f:%l:%m
 autocmd FileType php set autowrite
+autocmd BufWritePre * :%s/\s\+$//e
 set number
 set cursorline
 set mouse=a
 set ignorecase
+set smartcase
 set laststatus=2
 set encoding=utf-8 nobomb
 set ruler
@@ -24,6 +29,8 @@ set title
 set showcmd
 
 hi CursorLine cterm=NONE ctermbg=237 ctermfg=NONE
+
+au BufRead,BufNewFile *.tl set filetype=dustjs
 
 nmap <C-S-z> :tabprevious<cr>
 nmap <C-S-x> :tabnext<cr>
