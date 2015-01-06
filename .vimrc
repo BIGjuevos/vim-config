@@ -28,6 +28,9 @@ set showmode
 set title
 set showcmd
 
+set splitbelow
+set splitright
+
 hi CursorLine cterm=NONE ctermbg=237 ctermfg=NONE
 
 au BufRead,BufNewFile *.tl set filetype=dustjs
@@ -51,3 +54,8 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
