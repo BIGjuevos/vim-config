@@ -35,15 +35,13 @@ hi CursorLine cterm=NONE ctermbg=237 ctermfg=NONE
 
 au BufRead,BufNewFile *.tl set filetype=dustjs
 
-nmap <C-S-z> :tabprevious<cr>
-nmap <C-S-x> :tabnext<cr>
-imap <C-S-z> <ESC>:tabprevious<cr>i
-imap <C-S-x> <ESC>:tabnext<cr>i
-nmap <C-t> :tabnew<cr>
-imap <C-t> <ESC>:tabnew<cr>i
-map <C-w> :tabclose<cr>
-
-nmap <F2> :TlistToggle<cr>
+nmap <C-S-z> :bp<cr>
+nmap <C-S-x> :bn<cr>
+imap <C-S-z> <ESC>:bp<cr>i
+imap <C-S-x> <ESC>:bn<cr>i
+nmap <C-t> :badd<cr>
+imap <C-t> <ESC>:badd<cr>i
+map <C-w> :bd<cr>
 
 map <up> <nop>
 map <down> <nop>
@@ -59,3 +57,31 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+let g:syntastic_javascript_checkers = ['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Start NERDTree automatically no matter what
+" autocmd vimenter * NERDTree
+
+" F2 toggle
+nmap <F2> :NERDTreeToggle<cr>
+
+" C-n shows nerd tree
+map <C-n> :NERDTree<CR>
+
+" Auto close if just NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Setup ctrl-p fuzzy finder
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" tags
+nmap <F8> :TagbarToggle<CR>
